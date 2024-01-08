@@ -11,7 +11,6 @@ const UserProfileScreenDescription = ({ route }) => {
       axios.get(`https://api.github.com/users/${route?.params?.login}`)
         .then((response) => {
           const topUsers = response.data;
-          console.log(response, topUsers);
           setUserList(topUsers);
         })
         .catch((error) => {
