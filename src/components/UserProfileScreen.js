@@ -3,9 +3,9 @@ import { View, Text, Image, Dimensions, FlatList, StyleSheet, StatusBar  } from 
 import { BarChart } from 'react-native-chart-kit';
 import getTopUsersForChart from './getTopUsersForChart'; // Ajusta la ruta según la ubicación de tu archivo
 import axios from 'axios';
-const screenWidth = Dimensions.get("screen").width
 import { Card, Button, Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native';
+const screenWidth = Dimensions.get("window").width
 
 const UserProfileScreen = ({ route }) => {
   const { username } = route?.params || { username: 'YOUR_NAME' };
@@ -56,14 +56,20 @@ const UserProfileScreen = ({ route }) => {
     backgroundColor: '#fff',
     decimalPlace: 0,
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(255, 255, 0, ${opacity})`,
     style:{
-        borderRadius: 16
-
+      borderRadius: 16,
+      marginVertical: 5,
+      marginHorizontal: 5
     },
     backgroundGradientFrom: '#1E2923',
     backgroundGradientTo: '#08130D',
-    strokeWidth: 3 // optional, default 3
+    strokeWidth: 2,
+    barPercentage: 0.4,
+    barRadius: 0.8,
+    propsForLabels:{
+      fontFamily:'arial',
+      },
   }
   return (
     <View style={{flex: 1}}>
@@ -71,16 +77,19 @@ const UserProfileScreen = ({ route }) => {
                 <BarChart
                     data={chartData}
                     width={screenWidth}
-                    height={300}
-                    yAxisLabel={''}
-                    yAxisSuffix='1'
-                    yAxisInterval={9}
+                    showValuesOnTopOfBars
+                    showBarTops={false}
+                    height={400}
+                    yAxisLabel=''
+                    yAxisSuffix=''
+                    yAxisInterval={5}
                     chartConfig={chartConfig}
-                    bezier
                     style={{
                         marginVertical: 8,
                         borderRadius: 16 
                     }}
+                    // horizontalLabelRotation={40}
+                    verticalLabelRotation={50}
                 />
             )}
 
