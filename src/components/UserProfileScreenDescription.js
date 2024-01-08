@@ -5,7 +5,6 @@ import { Card, Button, Icon } from 'react-native-elements'
 
 const UserProfileScreenDescription = ({ route }) => {
   const [userList, setUserList] = useState([]);
-  // console.log(username, route?.params?.login);
   
   useEffect(() => {
     if (route?.params?.login) {
@@ -26,19 +25,18 @@ const UserProfileScreenDescription = ({ route }) => {
     return <Text>Cargando...</Text>;
   }
   return (
-    <View style={{flex: 1}}>
-                <Card>
-                    <Image source={{ uri: userList.avatar_url }} style={{ width: 50, height: 50, justifyContent: 'center' }} />
-                  <Text style={{marginBottom: 5}}>
-                  Nombre de usuario: {userList.login}
-                  </Text>
-                  <Text>Id Usuario: {userList.id}</Text>
-                  <Button
-                    icon={<Icon name='code' color='#ffffff' />}
-                    buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-                    title='VIEW NOW' 
-                    />
-                </Card>
+    <View style={{style: styles.container}}>
+      <Card>
+          <Image source={{ uri: userList.avatar_url }} style={{ width: 50, height: 50, justifyContent: 'center' }} />
+        <Text style={styles.text}>
+        Nombre de usuario: {userList.login}
+        </Text>
+        <Text style={styles.text}>Id Usuario: {userList.id}</Text>
+        <Text style={styles.text}>URL Seguidores: {userList.followers_url}</Text>
+        <Text style={styles.text}>Seguidores: {userList.followers}</Text>
+        <Text style={styles.text}>Siguiendo: {userList.following}</Text>
+        <Text style={styles.text}>URL Git: {userList.url}</Text>
+      </Card>
     </View>
   );
 };
@@ -55,6 +53,9 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 32,
+    },
+    text: {
+      marginVertical: 5,
     },
   });
 

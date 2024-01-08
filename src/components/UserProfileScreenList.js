@@ -49,10 +49,10 @@ const UserProfileScreenList = ({ route }) => {
           <View key={user.id} style={styles.container}>
               <Card>
                   <Image source={{ uri: user.avatar_url }} style={{ width: 50, height: 50, justifyContent: 'center' }} />
-                <Text style={{marginBottom: 5}}>
+                <Text  style={styles.text}>
                 Nombre de usuario: {user.login}
                 </Text>
-                <Text>Id Usuario: {user.id}</Text>
+                <Text style={styles.text}>Id Usuario: {user.id}</Text>
                 <Button
                   icon={<Icon name='code' color='#ffffff' />}
                   buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
@@ -78,6 +78,9 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 32,
+    },
+    text: {
+      marginVertical: 5,
     },
   });
 
